@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication11.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+        /* ================= HEADER ================= */
+
+        .header {
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f3e4d5;
+            border-bottom: 3px dashed #d4b8a0;
+            margin-bottom: 40px;
+        }
+
+        .logo-circle {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: #0d7a6d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #ffcc00;
+            font-size: 22px;
+            font-weight: bold;
+            border: 5px solid #ff7b00;
+            line-height: 28px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #222;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff7b00;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            background: #0d7a6d;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .footer h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+
+        .footer p {
+            font-size: 22px;
+            margin: 8px;
+        }
+    </style>
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+            <div class="logo-circle">
+                LOGO
+            </div>
+            <div class="navbar">
+                <a href="Home.aspx">HOME</a>
+                <a href="About.aspx">ABOUT</a>
+                <a href="WebForm1.aspx">MENU</a>
+                <a href="Order.aspx">🛒 CART</a>
+
+                <% if (Session["CustomerID"] != null) { %>
+                    <span style="font-size:20px; color:#0d7a6d; font-weight:bold;">
+                        Hello, <%: Session["FirstName"] %>
+                    </span>
+                    <a href="Logout.aspx">LOGOUT</a>
+                <% } else { %>
+                     <a href="Login.aspx">LOGIN</a>
+                       <% } %>
+                    </div>
+        </div>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+        <div class="footer">
+            <h2>CONTACT US</h2>
+            <p>Email: restaurant@gmail.com</p>
+            <p>Phone: +961 70 000 000</p>
+            <p>Beirut - Lebanon</p>
+        </div>
+
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
